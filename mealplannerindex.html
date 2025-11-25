@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What's in My Fridge - Meal Planner</title>
+    <link rel="stylesheet" href="styles1.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Page 1: Landing Page -->
+        <div id="page1" class="page active">
+            <div class="welcome-card">
+                <div class="fridge-icon">
+                    <img src="V:\project\midnight-fridge-glow-stockcake.jpg" alt="Fridge" class="fridge-image">
+                </div>
+                
+                <h1>What's in my fridge</h1>
+                <h2>meal planner</h2>
+                <p>Turn your available ingredients into delicious recipes!</p>
+                <button class="next-btn" onclick="goToPage(2)">
+                    Get Started →
+                </button>
+            </div>
+        </div>
+
+        <!-- Page 2: Add Ingredients -->
+        <div id="page2" class="page">
+            <div class="header">
+                <button class="back-btn" onclick="goToPage(1)">← Back</button>
+                <h2>Add Ingredients</h2>
+                <div class="header-buttons">
+                    <button class="voice-btn" onclick="startVoiceRecognition()" id="voice-btn">
+                        🎤 Voice
+                    </button>
+                    <button class="camera-btn" onclick="openCamera()">📷 Camera</button>
+                </div>
+            </div>
+
+            <!-- Voice Recognition Status -->
+            <div id="voice-status" class="voice-status" style="display: none;">
+                <div class="voice-indicator">
+                    <div class="voice-animation"></div>
+                    <p id="voice-text">Listening... Say your ingredients</p>
+                </div>
+                <div id="voice-results" class="voice-results"></div>
+                <button class="stop-voice-btn" onclick="stopVoiceRecognition()">Stop Listening</button>
+            </div>
+            
+            <div class="ingredients-container">
+                <!-- Vegetables Section -->
+                <div class="ingredient-category">
+                    <h3>🥬 Vegetables</h3>
+                    <div class="ingredient-grid">
+                        <div class="ingredient-item" data-ingredient="cucumber">
+                            <span class="ingredient-emoji">🥒</span>
+                            <span class="ingredient-name">Cucumber</span>
+                        </div>
+                        <div class="ingredient-item" data-ingredient="potato">
+                            <span class="ingredient-emoji">🥔</span>
+                            <span class="ingredient-name">Potato</span>
+                        </div>
+                        <div class="ingredient-item" data-ingredient="tomato">
+                            <span class="ingredient-emoji">🍅</span>
+                            <span class="ingredient-name">Tomato</span>
+                        </div>
+                        <div class="ingredient-item" data-ingredient="onion">
+                            <span class="ingredient-emoji">🧅</span>
+                            <span class="ingredient-name">Onion</span>
+                        </div>
+                        <div class="ingredient-item" data-ingredient="carrot">
+                            <span class="ingredient-emoji">🥕</span>
+                            <span class="ingredient-name">Carrot</span>
+                        </div>
+                        <div class="ingredient-item" data-ingredient="bell pepper">
+                            <span class="ingredient-emoji">🫑</span>
+                            <span class="ingredient-name">Bell Pepper</span>
+                        </div>
+                        <div class="ingredient-item" data-ingredient="broccoli">
+                            <span class="ingredient-emoji">🥦</span>
+                            <span class="ingredient-name">Broccoli</span>
+                        </div>
+                        <div class="ingredient-item" data-ingredient="spinach">
+                            <span class="ingredient-emoji">🥬</span>
+                            <span class="ingredient-name">Spinach</span>
+                        </div>
+                        <div class="ingredient-item" data-ingredient="mushroom">
+                            <span class="ingredient-emoji">🍄</span>
+                            <span class="ingredient-name">Mushroom</span>
+                        </div>
+                        <div class="ingredient-item" data-ingredient="zucchini">
+                            <span class="ingredient-emoji">🥒</span>
+                            <span class="ingredient-name">Zucchini</span>
+                        </div>
+                        <div class="ingredient-item" data-ingredient="eggplant">
+                            <span class="ingredient-emoji">🍆</span>
+                            <span class="ingredient-name">Eggplant</span>
+                        </div>
+                        <div class="ingredient-item" data-ingredient="cauliflower">
+                            <span class="ingredient-emoji">🥬</span>
+                            <span class="ingredient-name">Cauliflower</span>
+                        </div>
+                        <div class="ingredient-item" data-ingredient="cabbage">
+                            <span class="ingredient-emoji">🥬</span>
+                            <span class="ingredient-name">Cabbage</span>
+                        </div>
+                        <div class="ingredient-item" data-ingredient="lettuce">
+                            <span class="ingredient-emoji">🥬</span>
+                            <span class="ingredient-name">Lettuce</span>
+                        </div>
+                        <div class="ingredient-item" data-ingredient="corn">
+                            <span class="ingredient-emoji">🌽</span>
+                            <span class="ingredient-name">Corn</span>
+                        </div>
+                        <div class="ingredient-item" data-ingredient="peas">
+                            <span class="ingredient-emoji">🟢</span>
+                            <span class="ingredient-name">Peas</span>
+                        </div>
+                        <div class="ingredient-item" data-ingredient="garlic">
+                            <span class="ingredient-emoji">🧄</span>
+                            <span class="ingredient-name">Garlic</span>
+                        </div>
+                        <div class="ingredient-item" data-ingredient="ginger">
+                            <span class="ingredient-emoji">🫚</span>
+                            <span class="ingredient-name">Ginger</span>
+                        </div>
+                        <div class="ingredient-item" data-ingredient="celery">
+                            <span class="ingredient-emoji">🥬</span>
+                            <span class="ingredient-name">Celery</span>
+                        </div>
+                        <div class="ingredient-item" data-ingredient="radish">
+                            <span class="ingredient-emoji">🔴</span>
+                            <span class="ingredient-name">Radish</span>
+                        </div>
+                        <div class="ingredient-item" data-ingredient="beetroot">
+                            <span class="ingredient-emoji">🟣</span>
+                            <span class="ingredient-name">Beetroot</span>
+                        </div>
+                        <div class="ingredient-item" data-ingredient="asparagus">
+                            <span class="ingredient-emoji">🥬</span>
+                            <span class="ingredient-name">Asparagus</span>
+                        </div>
+                        <div class="ingredient-item" data-ingredient="green beans">
+                            <span class="ingredient-emoji">🟢</span>
+                            <span class="ingredient-name">Green Beans</span>
+                        </div>
+                        <div class="ingredient-item" data-ingredient="sweet potato">
+                            <span class="ingredient-emoji">🍠</span>
+                            <span class="ingredient-name">Sweet Potato</span>
+                        </div>
+                        <div class="ingredient-item" data-ingredient="leek">
+                            <span class="ingredient-emoji">🥬</span>
+                            <span class="ingredient-name">Leek</span>
+                        </div>
+                        <div class="ingredient-item" data-ingredient="turnip">
+                            <span class="ingredient-emoji">🟡</span>
+                            <span class="ingredient-name">Turnip</span>
+                        </div>
+                        <div class="ingredient-item" data-ingredient="parsnip">
+                            <span class="ingredient-emoji">🟡</span>
+                            <span class="ingredient-name">Parsnip</span>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <!-- Proteins Section -->
+                <div class="ingredient-category">
+                    <h3>🍖 Proteins</h3>
+                    <div class="ingredient-grid">
+                        <div class="ingredient-item" data-ingredient="chicken">
+                            <span class="ingredient-emoji">🍗</span>
+                            <span class="ingredient-name">Chicken</span>
+                        </div>
+                        <div class="ingredient-item" data-ingredient="fish">
+                            <span class="ingredient-emoji">🐟</span>
+                            <span class="ingredient-name">Fish</span>
+                        </div>
+                        <div class="ingredient-item" data-ingredient="eggs">
+                            <span class="ingredient-emoji">🥚</span>
+                            <span class="ingredient-name">Eggs</span>
+                        </div>
+                        <div class="ingredient-item" data-ingredient="beef">
+                            <span class="ingredient-emoji">🥩</span>
+                            <span class="ingredient-name">Beef</span>
+                        </div>
+                        <div class="ingredient-item" data-ingredient="tofu">
+                            <span class="ingredient-emoji">🧈</span>
+                            <span class="ingredient-name">Tofu</span>
+                        </div>
+                        <div class="ingredient-item" data-ingredient="beans">
+                            <span class="ingredient-emoji">🫘</span>
+                            <span class="ingredient-name">Beans</span>
+                        </div>
+                        <div class="ingredient-item" data-ingredient="pork">
+                            <span class="ingredient-emoji">🥓</span>
+                            <span class="ingredient-name">Pork</span>
+                        </div>
+                        <div class="ingredient-item" data-ingredient="turkey">
+                            <span class="ingredient-emoji">🦃</span>
+                            <span class="ingredient-name">Turkey</span>
+                        </div>
+                        <div class="ingredient-item" data-ingredient="lamb">
+                            <span class="ingredient-emoji">🐑</span>
+                            <span class="ingredient-name">Lamb</span>
+                        </div>
+                        <div class="ingredient-item" data-ingredient="shrimp">
+                            <span class="ingredient-emoji">🦐</span>
+                            <span class="ingredient-name">Shrimp</span>
+                        </div>
+                        <div class="ingredient-item" data-ingredient="salmon">
+                            <span class="ingredient-emoji">🐟</span>
+                            <span class="ingredient-name">Salmon</span>
+                        </div>
+                        <div class="ingredient-item" data-ingredient="tuna">
+                            <span class="ingredient-emoji">🐟</span>
+                            <span class="ingredient-name">Tuna</span>
+                        </div>
+                        <div class="ingredient-item" data-ingredient="lentils">
+                            <span class="ingredient-emoji">🟤</span>
+                            <span class="ingredient-name">Lentils</span>
+                        </div>
+                        <div class="ingredient-item" data-ingredient="nuts">
+                            <span class="ingredient-emoji">🥜</span>
+                            <span class="ingredient-name">Nuts</span>
+                        </div>
+                        <div class="ingredient-item" data-ingredient="duck">
+                            <span class="ingredient-emoji">🦆</span>
+                            <span class="ingredient-name">Duck</span>
+                        </div>
+                        <div class="ingredient-item" data-ingredient="crab">
+                            <span class="ingredient-emoji">🦀</span>
+                            <span class="ingredient-name">Crab</span>
+                        </div>
+                        <div class="ingredient-item" data-ingredient="lobster">
+                            <span class="ingredient-emoji">🦞</span>
+                            <span class="ingredient-name">Lobster</span>
+                        </div>
+                        <div class="ingredient-item" data-ingredient="scallops">
+                            <span class="ingredient-emoji">🐚</span>
+                            <span class="ingredient-name">Scallops</span>
+                        </div>
+                        <div class="ingredient-item" data-ingredient="bacon">
+                            <span class="ingredient-emoji">🥓</span>
+                            <span class="ingredient-name">Bacon</span>
+                        </div>
+                        <div class="ingredient-item" data-ingredient="sausage">
+                            <span class="ingredient-emoji">🌭</span>
+                            <span class="ingredient-name">Sausage</span>
+                        </div>
+                        <div class="ingredient-item" data-ingredient="ham">
+                            <span class="ingredient-emoji">🍖</span>
+                            <span class="ingredient-name">Ham</span>
+                        </div>
+                        <div class="ingredient-item" data-ingredient="chickpeas">
+                            <span class="ingredient-emoji">🫘</span>
+                            <span class="ingredient-name">Chickpeas</span>
+                        </div>
+                        <div class="ingredient-item" data-ingredient="quinoa">
+                            <span class="ingredient-emoji">🌾</span>
+                            <span class="ingredient-name">Quinoa</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Grains & Carbs Section -->
+                <div class="ingredient-category">
+                    <h3>🌾 Grains & Carbs</h3>
+                    <div class="ingredient-grid">
+                        <div class="ingredient-item" data-ingredient="rice">
+                            <span class="ingredient-emoji">🍚</span>
+                            <span class="ingredient-name">Rice</span>
+                        </div>
+                        <div class="ingredient-item" data-ingredient="pasta">
+                            <span class="ingredient-emoji">🍝</span>
+                            <span class="ingredient-name">Pasta</span>
+                        </div>
+                        <div class="ingredient-item" data-ingredient="bread">
+                            <span class="ingredient-emoji">🍞</span>
+                            <span class="ingredient-name">Bread</span>
+                        </div>
+                        <div class="ingredient-item" data-ingredient="quinoa">
+                            <span class="ingredient-emoji">🌾</span>
+                            <span class="ingredient-name">Quinoa</span>
+                        </div>
+                        <div class="ingredient-item" data-ingredient="oats">
+                            <span class="ingredient-emoji">🥣</span>
+                            <span class="ingredient-name">Oats</span>
+                        </div>
+                        <div class="ingredient-item" data-ingredient="noodles">
+                            <span class="ingredient-emoji">🍜</span>
+                            <span class="ingredient-name">Noodles</span>
+                        </div>
+                        <div class="ingredient-item" data-ingredient="barley">
+                            <span class="ingredient-emoji">🌾</span>
+                            <span class="ingredient-name">Barley</span>
+                        </div>
+                        <div class="ingredient-item" data-ingredient="couscous">
+                            <span class="ingredient-emoji">🌾</span>
+                            <span class="ingredient-name">Couscous</span>
+                        </div>
+                        <div class="ingredient-item" data-ingredient="bulgur">
+                            <span class="ingredient-emoji">🌾</span>
+                            <span class="ingredient-name">Bulgur</span>
+                        </div>
+                        <div class="ingredient-item" data-ingredient="tortilla">
+                            <span class="ingredient-emoji">🌯</span>
+                            <span class="ingredient-name">Tortilla</span>
+                        </div>
+                        <div class="ingredient-item" data-ingredient="crackers">
+                            <span class="ingredient-emoji">🍘</span>
+                            <span class="ingredient-name">Crackers</span>
+                        </div>
+                        <div class="ingredient-item" data-ingredient="cereal">
+                            <span class="ingredient-emoji">🥣</span>
+                            <span class="ingredient-name">Cereal</span>
+                        </div>
+                        <div class="ingredient-item" data-ingredient="flour">
+                            <span class="ingredient-emoji">🌾</span>
+                            <span class="ingredient-name">Flour</span>
+                        </div>
+                        <div class="ingredient-item" data-ingredient="rye bread">
+                            <span class="ingredient-emoji">🍞</span>
+                            <span class="ingredient-name">Rye Bread</span>
+                        </div>
+                        <div class="ingredient-item" data-ingredient="bagel">
+                            <span class="ingredient-emoji">🥯</span>
+                            <span class="ingredient-name">Bagel</span>
+                        </div>
+                        <div class="ingredient-item" data-ingredient="pita bread">
+                            <span class="ingredient-emoji">🫓</span>
+                            <span class="ingredient-name">Pita Bread</span>
+                        </div>
+                        <div class="ingredient-item" data-ingredient="brown rice">
+                            <span class="ingredient-emoji">🍚</span>
+                            <span class="ingredient-name">Brown Rice</span>
+                        </div>
+                        <div class="ingredient-item" data-ingredient="wild rice">
+                            <span class="ingredient-emoji">🍚</span>
+                            <span class="ingredient-name">Wild Rice</span>
+                        </div>
+                        <div class="ingredient-item" data-ingredient="millet">
+                            <span class="ingredient-emoji">🌾</span>
+                            <span class="ingredient-name">Millet</span>
+                        </div>
+                        <div class="ingredient-item" data-ingredient="buckwheat">
+                            <span class="ingredient-emoji">🌾</span>
+                            <span class="ingredient-name">Buckwheat</span>
+                        </div>
+                        <div class="ingredient-item" data-ingredient="cornmeal">
+                            <span class="ingredient-emoji">🌽</span>
+                            <span class="ingredient-name">Cornmeal</span>
+                        </div>
+                        <div class="ingredient-item" data-ingredient="polenta">
+                            <span class="ingredient-emoji">🌽</span>
+                            <span class="ingredient-name">Polenta</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dairy & Others Section -->
+                <div class="ingredient-category">
+                    <h3>🥛 Dairy & Others</h3>
+                    <div class="ingredient-grid">
+                        <div class="ingredient-item" data-ingredient="milk">
+                            <span class="ingredient-emoji">🥛</span>
+                            <span class="ingredient-name">Milk</span>
+                        </div>
+                        <div class="ingredient-item" data-ingredient="cheese">
+                            <span class="ingredient-emoji">🧀</span>
+                            <span class="ingredient-name">Cheese</span>
+                        </div>
+                        <div class="ingredient-item" data-ingredient="yogurt">
+                            <span class="ingredient-emoji">🥛</span>
+                            <span class="ingredient-name">Yogurt</span>
+                        </div>
+                        <div class="ingredient-item" data-ingredient="butter">
+                            <span class="ingredient-emoji">🧈</span>
+                            <span class="ingredient-name">Butter</span>
+                        </div>
+                        <div class="ingredient-item" data-ingredient="cream">
+                            <span class="ingredient-emoji">🥛</span>
+                            <span class="ingredient-name">Cream</span>
+                        </div>
+                        <div class="ingredient-item" data-ingredient="sour cream">
+                            <span class="ingredient-emoji">🥛</span>
+                            <span class="ingredient-name">Sour Cream</span>
+                        </div>
+                        <div class="ingredient-item" data-ingredient="cottage cheese">
+                            <span class="ingredient-emoji">🧀</span>
+                            <span class="ingredient-name">Cottage Cheese</span>
+                        </div>
+                        <div class="ingredient-item" data-ingredient="mozzarella">
+                            <span class="ingredient-emoji">🧀</span>
+                            <span class="ingredient-name">Mozzarella</span>
+                        </div>
+                        <div class="ingredient-item" data-ingredient="parmesan">
+                            <span class="ingredient-emoji">🧀</span>
+                            <span class="ingredient-name">Parmesan</span>
+                        </div>
+                        <div class="ingredient-item" data-ingredient="cheddar">
+                            <span class="ingredient-emoji">🧀</span>
+                            <span class="ingredient-name">Cheddar</span>
+                        </div>
+                        <div class="ingredient-item" data-ingredient="ice cream">
+                            <span class="ingredient-emoji">🍦</span>
+                            <span class="ingredient-name">Ice Cream</span>
+                        </div>
+                        <div class="ingredient-item" data-ingredient="goat cheese">
+                            <span class="ingredient-emoji">🧀</span>
+                            <span class="ingredient-name">Goat Cheese</span>
+                        </div>
+                        <div class="ingredient-item" data-ingredient="feta cheese">
+                            <span class="ingredient-emoji">🧀</span>
+                            <span class="ingredient-name">Feta Cheese</span>
+                        </div>
+                        <div class="ingredient-item" data-ingredient="blue cheese">
+                            <span class="ingredient-emoji">🧀</span>
+                            <span class="ingredient-name">Blue Cheese</span>
+                        </div>
+                        <div class="ingredient-item" data-ingredient="ricotta">
+                            <span class="ingredient-emoji">🧀</span>
+                            <span class="ingredient-name">Ricotta</span>
+                        </div>
+                        <div class="ingredient-item" data-ingredient="mascarpone">
+                            <span class="ingredient-emoji">🧀</span>
+                            <span class="ingredient-name">Mascarpone</span>
+                        </div>
+                        <div class="ingredient-item" data-ingredient="heavy cream">
+                            <span class="ingredient-emoji">🥛</span>
+                            <span class="ingredient-name">Heavy Cream</span>
+                        </div>
+                        <div class="ingredient-item" data-ingredient="buttermilk">
+                            <span class="ingredient-emoji">🥛</span>
+                            <span class="ingredient-name">Buttermilk</span>
+                        </div>
+                        <div class="ingredient-item" data-ingredient="greek yogurt">
+                            <span class="ingredient-emoji">🥛</span>
+                            <span class="ingredient-name">Greek Yogurt</span>
+                        </div>
+                        <div class="ingredient-item" data-ingredient="whipped cream">
+                            <span class="ingredient-emoji">🥛</span>
+                            <span class="ingredient-name">Whipped Cream</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Selected Ingredients Display -->
+            <div class="selected-ingredients">
+                <h3>Selected Ingredients (<span id="ingredient-count">0</span>)</h3>
+                <div id="selected-list" class="selected-list"></div>
+            </div>
+
+            <!-- Generate Recipe Button -->
+            <div class="generate-section">
+                <button id="generate-btn" class="generate-btn" onclick="goToPage(4)" disabled>
+                    Generate Recipe →
+                </button>
+            </div>
+        </div>
+
+        <!-- Page 3: Camera Ingredient Detection -->
+        <div id="page3" class="page">
+            <div class="header">
+                <button class="back-btn" onclick="goToPage(2)">← Back</button>
+                <h2>Camera Ingredient Detection</h2>
+            </div>
+            
+            <div class="camera-container">
+                <div class="camera-section">
+                    <div class="camera-preview">
+                        <video id="cameraVideo" autoplay playsinline></video>
+                        <canvas id="cameraCanvas" style="display: none;"></canvas>
+                        <div id="cameraStatus" class="camera-status">Starting camera...</div>
+                    </div>
+                    
+                    <div class="camera-controls">
+                        <button class="capture-btn" onclick="capturePhoto()">📸 Capture Photo</button>
+                        <button class="switch-camera-btn" onclick="switchCamera()">🔄 Switch to Front</button>
+                    </div>
+                    
+                    <div class="camera-info">
+                        <p><strong>📱 Camera Tips for Better Detection:</strong></p>
+                        <ul>
+                            <li><strong>Lighting:</strong> Use bright, natural light - avoid shadows</li>
+                            <li><strong>Background:</strong> Place ingredients on a white/light surface</li>
+                            <li><strong>Distance:</strong> Hold camera 6-12 inches from ingredients</li>
+                            <li><strong>Focus:</strong> Show one ingredient clearly at a time</li>
+                            <li><strong>Colors:</strong> Ensure ingredient colors are clearly visible</li>
+                            <li><strong>Examples:</strong> Orange carrot, red tomato, green cucumber work best</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="detection-section">
+                    <h3>Detected Ingredients</h3>
+                    <div id="colorAnalysis" class="color-analysis" style="display: none;">
+                        <h4>Color Analysis:</h4>
+                        <div id="colorResults" class="color-results"></div>
+                    </div>
+                    <div id="detectedIngredients" class="detected-list">
+                        <p class="detection-hint">Take a photo of your ingredients to detect them automatically!</p>
+                    </div>
+                    
+                    <div class="detection-actions">
+                        <button class="generate-recipe-btn" onclick="generateFromDetected()" disabled>
+                            🍳 Generate Recipe from Detected Ingredients
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Page 4: Generate Recipe -->
+        <div id="page4" class="page">
+            <div class="header">
+                <button class="back-btn" onclick="goToPage(2)">← Back to Ingredients</button>
+                <h2>Your Recipe</h2>
+            </div>
+
+            <div class="recipe-container">
+                <div class="selected-ingredients-summary">
+                    <h3>Using these ingredients:</h3>
+                    <div id="recipe-ingredients-list" class="ingredients-summary"></div>
+                </div>
+
+                <div class="recipe-content">
+                    <div id="loading" class="loading">
+                        <div class="spinner"></div>
+                        <p>Generating your personalized recipe...</p>
+                    </div>
+                    
+                    <div id="recipe-result" class="recipe-result" style="display: none;">
+                        <div class="recipe-header">
+                            <h3 id="recipe-title"></h3>
+                            <div class="recipe-meta">
+                                <span id="recipe-time">⏱️ 30 mins</span>
+                                <span id="recipe-servings">👥 2 servings</span>
+                                <span id="recipe-difficulty">📊 Easy</span>
+                            </div>
+                        </div>
+                        
+                        <div class="recipe-body">
+                            <div class="ingredients-section">
+                                <h4>📝 Ingredients Needed:</h4>
+                                <ul id="recipe-ingredients"></ul>
+                            </div>
+                            
+                            <div class="instructions-section">
+                                <h4>👨‍🍳 Instructions:</h4>
+                                <ol id="recipe-instructions"></ol>
+                            </div>
+                            
+                            <div class="tips-section">
+                                <h4>💡 Chef's Tips:</h4>
+                                <p id="recipe-tips"></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="error-message" class="error-message" style="display: none;">
+                        <h3>😅 Oops! Something went wrong</h3>
+                        <p>We couldn't generate a recipe right now. Here's a simple suggestion based on your ingredients:</p>
+                        <div id="fallback-recipe"></div>
+                    </div>
+                </div>
+
+                <div class="action-buttons">
+                    <button class="secondary-btn" onclick="generateNewRecipe()">
+                        🔄 Try Another Recipe
+                    </button>
+                    <button class="primary-btn" onclick="startOver()">
+                        🏠 Start Over
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
